@@ -1,0 +1,178 @@
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Detection and Recognition with PaddleOCR</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        #algoForm {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #algoForm label, #algoForm select {
+            display: block;
+            margin: 10px auto;
+        }
+
+        #algoForm button {
+            display: block;
+            margin: 0 auto;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        img {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Text Detection and Recognition with PaddleOCR</h1>
+
+    <form id="algoForm">
+        <label for="detAlgo">Select Detection Algorithm:</label>
+        <select id="detAlgo" name="detAlgo">
+            <option value="east">EAST</option>
+            <option value="sast">SAST</option>
+            <option value="pse">PSE</option>
+            <option value="fce">FCE</option>
+        </select><br><br>
+
+        <label for="recAlgo">Select Recognition Algorithm:</label>
+        <select id="recAlgo" name="recAlgo">
+            <option value="srn">SRN</option>
+            <option value="nrtr">NRTR</option>
+            <option value="svtr">SVTR</option>
+            <option value="abi">ABI</option>
+        </select><br><br>
+
+        <button type="button" onclick="startOCR()">Start OCR</button>
+    </form>
+    <h1>Live OCR with PaddleOCR</h1>
+    <img src="{{ url_for('video_feed', det_algo='your_det_algo', rec_algo='your_rec_algo') }}" />
+</body>
+</html>
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webcam OCR</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        #ocrForm {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #ocrForm label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        #ocrForm input[type="text"],
+        #ocrForm select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        #ocrForm button {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #ocrForm button:hover {
+            background-color: #45a049;
+        }
+
+        #resultImage {
+            display: block;
+            margin: 20px auto;
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Text Detection and Recognition with PaddleOCR </h1>
+
+    <form id="ocrForm" action="/start_ocr" method="POST">
+        <label for="videoSource">Video Source (IP address or URL):</label>
+        <input type="text" id="videoSource" name="video_source" required>
+
+        <label for="detAlgo">Select Detection Algorithm:</label>
+        <select id="detAlgo" name="det_algo">
+            <option value="east">EAST</option>
+            <option value="sast">SAST</option>
+            <option value="pse">PSE</option>
+            <option value="fce">FCE</option>
+        </select>
+
+        <label for="recAlgo">Select Recognition Algorithm:</label>
+        <select id="recAlgo" name="rec_algo">
+            <option value="srn">SRN</option>
+            <option value="nrtr">NRTR</option>
+            <option value="svtr">SVTR</option>
+            <option value="abi">ABI</option>
+        </select>
+
+        <button type="submit">Start OCR</button>
+    </form>
+
+    <h1>Live OCR </h1>
+    <img id="resultImage" src="{{ url_for('video_feed', det_algo='your_det_algo', rec_algo='your_rec_algo') }}" />
+
+</body>
+</html>
