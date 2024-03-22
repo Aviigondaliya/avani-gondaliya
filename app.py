@@ -133,7 +133,7 @@ def start_ocr(video_source, det_algo, rec_algo):
             boxes = [line[0] for line in result]
             txts = [line[1][0] for line in result]
             scores = [line[1][1] for line in result]
-            im_show = draw_ocr(image, boxes, txts, scores, font_path=r'C:\avani\TRP\PaddleOCR\doc\fonts\simfang.ttf')
+            im_show = draw_ocr(image, boxes, txts, scores, font_path=r'/PaddleOCR/doc/fonts/simfang.ttf')
             frame_with_ocr = cv2.cvtColor(np.array(im_show), cv2.COLOR_RGB2BGR)
 
             # Encode the frame as JPEG
